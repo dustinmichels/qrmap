@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Choropleth</title>
+
+    <!-- Bulma CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"
+    />
+
+    <!-- Leaflet CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+    />
+
+    <style>
+      #map {
+        height: 500px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <nav class="navbar is-dark" role="navigation">
+      <div class="navbar-brand">
+        <div class="navbar-item">
+          <h1 class="title is-4 has-text-white">QR Choropleth</h1>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Map Container -->
+    <section class="section">
+      <div class="container">
+        <h2 class="title is-4">About this map...</h2>
+        <p class="mb-4">
+          This interactive map shows Cambridge, Massachusetts. Explore the area
+          by panning and zooming.
+        </p>
+        <div id="map"></div>
+      </div>
+    </section>
+
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+
+    <script>
+      // Initialize map centered on Cambridge, MA
+      const map = L.map("map").setView([42.3736, -71.1097], 13);
+
+      // Add OpenStreetMap tiles
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "© OpenStreetMap contributors",
+        maxZoom: 19,
+      }).addTo(map);
+
+      // Optional: Add a marker for Cambridge
+      L.marker([42.3736, -71.1097])
+        .addTo(map)
+        .bindPopup("Cambridge, MA")
+        .openPopup();
+    </script>
+  </body>
+</html>
