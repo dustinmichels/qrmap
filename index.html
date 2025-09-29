@@ -22,9 +22,34 @@
         height: 500px;
         width: 100%;
       }
+
+      #referrer-alert {
+        display: none;
+        animation: slideDown 0.4s ease-out;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     </style>
   </head>
   <body>
+    <!-- Referrer Alert -->
+    <div id="referrer-alert" class="notification is-info is-light">
+      <button
+        class="delete"
+        onclick="document.getElementById('referrer-alert').style.display='none'"
+      ></button>
+      <strong>Welcome!</strong> You've arrived from our special QR code link. 🎉
+    </div>
+
     <!-- Header -->
     <nav class="navbar is-dark" role="navigation">
       <div class="navbar-brand">
@@ -50,6 +75,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 
     <script>
+      // Check referrer and show alert if it matches
+      const targetReferrer = "https://t.ly/8fMxR";
+      const currentReferrer = document.referrer;
+
+      if (
+        currentReferrer === targetReferrer ||
+        currentReferrer === targetReferrer + "/"
+      ) {
+        document.getElementById("referrer-alert").style.display = "block";
+      }
+
       // Initialize map centered on Cambridge, MA
       const map = L.map("map").setView([42.3736, -71.1097], 13);
 
