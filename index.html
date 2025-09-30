@@ -41,13 +41,13 @@
     </style>
   </head>
   <body>
-    <!-- Referrer Alert -->
+    <!-- QR Code Alert -->
     <div id="referrer-alert" class="notification is-info is-light">
       <button
         class="delete"
         onclick="document.getElementById('referrer-alert').style.display='none'"
       ></button>
-      <strong>Welcome!</strong> You've arrived from our special QR code link. 🎉
+      <strong>Welcome!</strong> You've scanned our QR code! 🎉
     </div>
 
     <!-- Header -->
@@ -75,14 +75,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
 
     <script>
-      // Check referrer and show alert if it matches
-      const targetReferrer = "https://t.ly/";
-      const currentReferrer = document.referrer;
+      // Check URL parameter for source=qr
+      const urlParams = new URLSearchParams(window.location.search);
+      const source = urlParams.get("source");
 
-      if (
-        currentReferrer === targetReferrer ||
-        currentReferrer === targetReferrer + "/"
-      ) {
+      if (source === "qr") {
         document.getElementById("referrer-alert").style.display = "block";
       }
 
