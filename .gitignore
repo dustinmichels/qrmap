@@ -1,7 +1,9 @@
+.DS_Store
+
 data/
 out/
 
-.ipynb_checkpoints/**
+**/.ipynb_checkpoints/**
 
 # Python-generated files
 __pycache__/
